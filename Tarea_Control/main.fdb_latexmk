@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1775518568.1051 "c:/Users/madar/OneDrive/Escritorio/Uni/Apuntes/Tarea_Control/main.tex" "main.pdf" "main" 1775518569.27465 0
+["pdflatex"] 1775689191.84724 "c:/Users/madar/OneDrive/Escritorio/Uni/Apuntes/Tarea_Control/main.tex" "main.pdf" "main" 1775689193.19288 0
   "C:/Users/madar/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1775439136 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/madar/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1095.pk" 1775516845 12668 3fb82dc48bcfab289311a2f8890d25c1 ""
   "C:/Users/madar/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1775439043 13333848 624035084709ac8a10e0894535ab2aa3 ""
@@ -191,11 +191,11 @@
   "C:/Users/madar/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
   "C:/Users/madar/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/pst-xkey.sty" 1656236919 1694 74b0201cd6a70abed294b6332f129c41 ""
   "C:/Users/madar/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1656236919 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
-  "c:/Users/madar/OneDrive/Escritorio/Uni/Apuntes/Tarea_Control/main.tex" 1775518567 6227 e4be6bec64ff60891d7cd6a5c77194d5 ""
+  "c:/Users/madar/OneDrive/Escritorio/Uni/Apuntes/Tarea_Control/main.tex" 1775689191 7141 677b9a5a302a381dc5429f5054bb93ab ""
   "logo.png" 1775439009 26248 4d7b40f412f8c4382ddc153162ebf46b ""
-  "main.aux" 1775518569 532 393b4807b13c5bc10a7df59561b50717 "pdflatex"
-  "main.out" 1775518569 539 618b8cfdb71026bc3bd3f8e78136cade "pdflatex"
-  "main.tex" 1775518567 6227 e4be6bec64ff60891d7cd6a5c77194d5 ""
+  "main.aux" 1775689192 532 1d39de24e17e7ce926463cc160d88cbb "pdflatex"
+  "main.out" 1775689192 539 618b8cfdb71026bc3bd3f8e78136cade "pdflatex"
+  "main.tex" 1775689191 7141 677b9a5a302a381dc5429f5054bb93ab ""
   "uofa-eng-assignment.cls" 1775439009 2035 0c154ee5e42a7135dd9f66fcfa9f85ad ""
   (generated)
   "main.aux"

@@ -122,7 +122,7 @@ Por lo tanto nos queda el siguiente sistema de ecuaciones diferenciales de prime
 \begin{align*}
     \begin{cases}
         \dot{x}_1 = x_2 \\
-        \dot{x}_2 = \frac{Tz}{m} \cos x_3 \cos x_5 - g \\
+        \dot{x}_2 = \frac{\tau_z}{m} \cos x_3 \cos x_5 - g \\
         \dot{x}_3 = x_4 \\
         \dot{x}_4 = \frac{1}{I_x} \left( x_6 x_8 (I_y - I_z) + \tau_\phi \right) \\
         \dot{x}_5 = x_6 \\
@@ -131,6 +131,7 @@ Por lo tanto nos queda el siguiente sistema de ecuaciones diferenciales de prime
         \dot{x}_8 = \frac{1}{I_z} \left( x_4 x_6 (I_x - I_y) + \tau_\psi \right)
     \end{cases}
 \end{align*}
+donde el control de entrada del sistema es el vector $\tau=[\tau_z, \tau_\phi, \tau_\theta, \tau_\psi]$ que es el empuje total generado por los cuatro rotores, dado que asumimos que $T=1$ entonces el sistema queda completamente definido por el vector de torques $\tau$ y las variables de estado $x$.
 Ahora lo que buscaremos es linealizar el sistema de ecuaciones diferenciales haciendo una expansión de Taylor 
 alrededor del punto de equilibrio que encontramos en la sección anterior, entonces tenemos que 
 el punto de equilibrio respecto a las variables de estado es $x_e=(z_0,0,0,0,0,0,\psi_0,0)$, empecemos con $\dot{x}_2$
@@ -138,7 +139,12 @@ entonces tenemos que
 \begin{align*}
     x_2(x) = \frac{T}{m} \cos x_3 \cos x_5 - g &\approx f_2(x_e) + \nabla f_2(x_e) \cdot (x - x_e) \\
     &\approx f_2(x_e) + \frac{\partial f_2}{\partial x_3}\bigg|_{x_e} (x_3 -0) + \frac{\partial f_2}{\partial x_5}\bigg|_{x_e} (x_5 - 0) \\
-    &\approx 0 - \frac{T}{m} \sin 0 \cos 0 (x_3) - \frac{T}{m} \cos 0 \sin 0 (x_5) 
+    &\approx 0 - \frac{T}{m} \sin 0 \cos 0 (0) - \frac{T}{m} \cos 0 \sin 0 (0)  =0
 \end{align*}
-
+para $\dot{x}_4$ entonces tenemos que
+\begin{align*}
+    x_4(x) = \frac{1}{I_x} \left( x_6 x_8 (I_y - I_z) + \tau_\phi \right) &\approx f_4(x_e) + \nabla f_4(x_e) \cdot (x - x_e) \\
+    &\approx f_4(x_e) + \frac{\partial f_4}{\partial x_6}\bigg|_{x_e} (x_6 - 0) + \frac{\partial f_4}{\partial x_8}\bigg|_{x_e} (x_8 - 0) + \frac{\partial f_4}{\partial \tau_\phi}\bigg|_{x_e} (\tau_\phi - 0) \\
+    &\approx 0 + \frac{1}{I_x} (0) (I_y - I_z) (0 - 0) + \frac{1}{I_x} 0 (I_y - I_z) (0 - 0) + \frac{1}{I_x} (\tau_\phi - 0) = \frac{1}{I_x} \tau_\phi
+\end{align*}
 \end{document}

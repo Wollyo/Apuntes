@@ -25,7 +25,8 @@
 \section*{Vehículo Aéreo No Tripulado Cuadricóptero}
 
 \textbf{Contexto y aplicación.} 
-Los cuadricópteros son plataformas de 6 grados de libertad (6-DOF) con fuerte acoplamiento no lineal. Su control preciso es esencial en logística autónoma, inspección de infraestructura y movilidad aérea urbana. Las no linealidades surgen de las transformaciones de orientación mediante ángulos de Euler
+Los cuadricópteros son plataformas de 6 grados de libertad (6-DOF) con fuerte acoplamiento no lineal. 
+Su control preciso es esencial en logística autónoma, inspección de infraestructura y movilidad aérea urbana. Las no linealidades surgen de las transformaciones de orientación mediante ángulos de Euler
 
 \subsection*{Variables del sistema}
 
@@ -131,20 +132,80 @@ Por lo tanto nos queda el siguiente sistema de ecuaciones diferenciales de prime
         \dot{x}_8 = \frac{1}{I_z} \left( x_4 x_6 (I_x - I_y) + \tau_\psi \right)
     \end{cases}
 \end{align*}
-donde el control de entrada del sistema es el vector $\tau=[\tau_z, \tau_\phi, \tau_\theta, \tau_\psi]$ que es el empuje total generado por los cuatro rotores, dado que asumimos que $T=1$ entonces el sistema queda completamente definido por el vector de torques $\tau$ y las variables de estado $x$.
-Ahora lo que buscaremos es linealizar el sistema de ecuaciones diferenciales haciendo una expansión de Taylor 
-alrededor del punto de equilibrio que encontramos en la sección anterior, entonces tenemos que 
-el punto de equilibrio respecto a las variables de estado es $x_e=(z_0,0,0,0,0,0,\psi_0,0)$, empecemos con $\dot{x}_2$
-entonces tenemos que
+dónde el control de entrada del sistema es el vector $\tau=[\tau_z, \tau_\phi, \tau_\theta, \tau_\psi]$ \\
+Asi vamos a escribir el sistema como $\dot{x}=f(x,u)$, 
+entonces tenemos que el sistema linealizado alrededor del punto de equilibrio 
+$x_e=[0,0,0,0,0,0,0,0]$ y $u_e=[mg,0,0,0]$ es
 \begin{align*}
-    x_2(x) = \frac{T}{m} \cos x_3 \cos x_5 - g &\approx f_2(x_e) + \nabla f_2(x_e) \cdot (x - x_e) \\
-    &\approx f_2(x_e) + \frac{\partial f_2}{\partial x_3}\bigg|_{x_e} (x_3 -0) + \frac{\partial f_2}{\partial x_5}\bigg|_{x_e} (x_5 - 0) \\
-    &\approx 0 - \frac{T}{m} \sin 0 \cos 0 (0) - \frac{T}{m} \cos 0 \sin 0 (0)  =0
+    \triangle \dot{x} \approx A \triangle x + B \triangle u
 \end{align*}
-para $\dot{x}_4$ entonces tenemos que
+dónde 
+\[
+ A = \frac{\partial f}{\partial x} = |_{(x_e,u_e)}, \quad B = \frac{\partial f}{\partial u} = |_{(x_e,u_e)}
+\]
+los calculos son un poco tediosos pero se pueden hacer de forma sistematica y son algo repetitivos por lo tanto vamos a 
+poner la soicion final de las matrices $A$ y $B$.
+% \begin{align*}
+%     \frac{\partial f_1}{\partial x_1} = 0, \quad \frac{\partial f_1}{\partial x_2} = 1, \quad \frac{\partial f_1}{\partial x_i} = 0 \text{ para } i=3,...,8 
+% \end{align*}
+% para $f_2$ 
+% \begin{align*}
+%      \frac{\partial f_2}{\partial x_3} = -\frac  {mg}{m} \sin 0 \cos 0 = 0, \quad \frac{\partial f_2}{\partial x_5} = -\frac{mg}{m} \cos 0 \sin 0 = 0, \quad \frac{\partial f_2}{\partial x_i} = 0 \text{ para } i=1,2,4,6,7,8 \\
+% \end{align*}
+% para $f_3$
+% \begin{align*}
+%     \frac{\partial f_3}{\partial x_3} = 0, \quad \frac{\partial f_3}{\partial x_4} = 1, \quad \frac{\partial f_3}{\partial x_i} = 0 \text{ para } i=1,2,5,6,7,8
+% \end{align*}
+% para $f_4$
+% \begin{align*}
+%     \frac{\partial f_4}{\partial x_4} = 0, \quad \frac{\partial f_4}{\partial x_6} = \frac{1}{I_x} (I_y - I_z), \quad \frac{\partial f_4}{\partial x_8} = 0, \quad \frac{\partial f_4}{\partial x_i} = 0 \text{ para } i=1,2,3,5,7
+% \end{align*}
+% para $f_5$
+% \begin{align*}
+%     \frac{\partial f_5}{\partial x_5} = 0, \quad \frac{\partial f_5}{\partial x_6} = 1, \quad \frac{\partial f_5}{\partial x_i} = 0 \text{ para } i=1,2,3,4,7,8 
+% \end{align*}
+% para $f_6$
+% \begin{align*}
+%     \frac{\partial f_6}{\partial x_4} = 0, \quad \frac{\partial f_6}{\partial x_6} = 0, \quad \frac{\partial f_6}{\partial x_8} = \frac{1}{I_y} (I_z - I_x), \quad \frac{\partial f_6}{\partial x_i} = 0 \text{ para } i=1,2,3,5,7
+% \end{align*}
+% para $f_7$
+% \begin{align*}
+%     \frac{\partial f_7}{\partial x_7} = 0, \quad \frac{\partial f_7}{\partial x_8} = 1, \quad \frac{\partial f_7}{\partial x_i} = 0 \text{ para } i=1,2,3,4,5,6
+% \end{align*}
+% para $f_8$
+% \begin{align*}
+%     \frac{\partial f_8}{\partial x_4} = 0, \quad \frac{\partial f_8}{\partial x_6} = 0, \quad \frac{\partial f_8}{\partial x_8} = 0, \quad \frac{\partial f_8}{\partial x_i} = 0 \text{ para } i=1,2,3,5,7
+% \end{align*}
+% entonces la matriz $A$ es
+\[
+A = \begin{bmatrix}
+0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0& 0 & 0  \\
+0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 
+\end{bmatrix}
+\]
+y la matriz $B$ es
+\[
+B = \begin{bmatrix}
+0 & 0 & 0 & 0 \\
+\frac{1}{m} & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 \\
+0 & \frac{1}{I_x} & 0 & 0 \\
+0 & 0 & 0 & 0 \\
+0 & 0 & \frac{1}{I_y} & 0 \\
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & \frac{1}{I_z}
+\end{bmatrix}
+\]
+por lo tanto la solución del sistema linealizado es
 \begin{align*}
-    x_4(x) = \frac{1}{I_x} \left( x_6 x_8 (I_y - I_z) + \tau_\phi \right) &\approx f_4(x_e) + \nabla f_4(x_e) \cdot (x - x_e) \\
-    &\approx f_4(x_e) + \frac{\partial f_4}{\partial x_6}\bigg|_{x_e} (x_6 - 0) + \frac{\partial f_4}{\partial x_8}\bigg|_{x_e} (x_8 - 0) + \frac{\partial f_4}{\partial \tau_\phi}\bigg|_{x_e} (\tau_\phi - 0) \\
-    &\approx 0 + \frac{1}{I_x} (0) (I_y - I_z) (0 - 0) + \frac{1}{I_x} 0 (I_y - I_z) (0 - 0) + \frac{1}{I_x} (\tau_\phi - 0) = \frac{1}{I_x} \tau_\phi
+    \triangle x = e^{At} \triangle x(0) + \int_0^t e^{A(t-s)} B \triangle u(s) ds  
 \end{align*}
+
+
 \end{document}

@@ -20,6 +20,31 @@
 \begin{document}
 
 \maketitle
-Ola
+\textbf{Ejercicio 8.2} Resolver
+\[
+\max_{u} \int_{0}^{1} \bigl(x(t) - u(t)\bigr)\, dt
+\]
+sujeto a
+\[
+x'(t) = 2u(t)\bigl(1 - u(t)\bigr), \quad x(0) = 0,
+\]
+\[
+0 \leq u(t) \leq 1.
+\]
+Como vimos en estas secciones, el problema de este ejercicio radica en la frontera
+que tiene nuestro control, es decir, el hecho de que 
+$u(t)$ debe estar entre $0$ y $1$. Para resolver este problema, primero encontramos la función Hamiltoniana de nuestro sistema, que es
+\[H(x, u, \lambda) = x - u + 2\lambda u(1 - u).\]
+Luego, encontramos la función de costo$\lambda(t)$, que es
+\[\lambda'(t) = -\frac{\partial H}{\partial x} = -1 \implies \lambda(t) = -t + C.\]
+ siguiendo las condiciones tenemos que 
+\[
+\frac{\partial H}{\partial u} = -1 + 2\lambda(1 - 2u) = 0.
+\]
+despejando $u$ tenemos que
+\[
+u = \frac{2\lambda - 1}{4\lambda}.
+\]
+Ahora
 
 \end{document}
